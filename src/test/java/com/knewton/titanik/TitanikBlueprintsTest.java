@@ -3,6 +3,7 @@ package com.knewton.titanik;
 import com.tinkerpop.blueprints.*;
 import com.tinkerpop.blueprints.impls.GraphTest;
 import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 
@@ -26,6 +27,12 @@ public class TitanikBlueprintsTest extends GraphTest {
         this.stopWatch();
         doTestSuite(new GraphTestSuite(this));
         printTestPerformance("GraphTestSuite", this.stopWatch());
+    }
+
+    public void testTransactionalGraphTestSuite() throws Exception {
+        this.stopWatch();
+        doTestSuite(new TransactionalGraphTestSuite(this));
+        printTestPerformance("TransactionalGraphTestSuite", this.stopWatch());
     }
 
 //    public void testKeyIndexableGraphTestSuite() throws Exception {
@@ -64,13 +71,15 @@ public class TitanikBlueprintsTest extends GraphTest {
 //        printTestPerformance("GraphSONReaderTestSuite", this.stopWatch());
 //    }
 
+    @Override
     public Graph generateGraph() {
-        return new TitanikTransactionalGraph(new TinkerGraph(), mock(TitanikEventConsumer.class));
+        TinkerGraph readGraph = new TinkerGraph();
+        return new TitanikTransactionalGraph(readGraph, new DirectConsumer(readGraph));
     }
 
     @Override
     public Graph generateGraph(String s) {
-        return new TitanikTransactionalGraph(new TinkerGraph(s), mock(TitanikEventConsumer.class));
+        throw new UnsupportedOperationException();
     }
 
     public void doTestSuite(final TestSuite testSuite) throws Exception {

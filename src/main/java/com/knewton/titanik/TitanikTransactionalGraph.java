@@ -79,7 +79,7 @@ public class TitanikTransactionalGraph implements TransactionalGraph {
     @Override
     public Vertex addVertex(Object id) {
         if (id == null ) {
-            id = UUID.randomUUID(); //TODO(dsiegel): how do we handle our ids?
+            id = UUID.randomUUID().toString(); //TODO(dsiegel): how do we handle our ids?
         }
         Vertex vertex = getVertex(id);
         if (vertex == null) {
@@ -233,6 +233,7 @@ public class TitanikTransactionalGraph implements TransactionalGraph {
 
     @Override
     public String toString() {
-        return StringFactory.graphString(this, "TODO: make this a thing");
+        // TODO(dsiegel): better graph tostring
+        return StringFactory.graphString(this, "new vertices: " + tx.newVertices.size());
     }
 }
