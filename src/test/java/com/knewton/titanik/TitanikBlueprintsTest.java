@@ -73,8 +73,8 @@ public class TitanikBlueprintsTest extends GraphTest {
 
     @Override
     public Graph generateGraph() {
-        TinkerGraph readGraph = new TinkerGraph();
-        return new TitanikTransactionalGraph(readGraph, new DirectConsumer(readGraph));
+        TinkerGraph innerGraph = new TinkerGraph();
+        return new TitanikTransactionalGraph(innerGraph, new DirectConsumer(innerGraph));
     }
 
     @Override

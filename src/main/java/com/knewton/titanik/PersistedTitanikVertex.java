@@ -13,12 +13,12 @@ public class PersistedTitanikVertex extends AbstractPersistedTitanikElement impl
 
     @Override
     public Iterable<Edge> getEdges(Direction direction, String... labels) {
-        throw new UnsupportedOperationException();
+        return getPersistedVertex().getEdges(direction, labels);
     }
 
     @Override
     public Iterable<Vertex> getVertices(Direction direction, String... labels) {
-        throw new UnsupportedOperationException();
+        return getPersistedVertex().getVertices(direction, labels);
     }
 
     @Override
@@ -64,5 +64,9 @@ public class PersistedTitanikVertex extends AbstractPersistedTitanikElement impl
     @Override
     public void removeOutEdge(Edge edge) {
         throw new UnsupportedOperationException();
+    }
+
+    private Vertex getPersistedVertex() {
+        return (Vertex) this.getPersistedElement();
     }
 }

@@ -8,9 +8,6 @@ import com.tinkerpop.blueprints.util.StringFactory;
 import java.util.Iterator;
 import java.util.UUID;
 
-// I Made a mistake.  Anything I return needs to be wrapped in a NewTitanikVertex, because the user might modify it.
-// !!!!!
-
 public class TitanikTransactionalGraph implements TransactionalGraph {
     private static final Features FEATURES = new Features();
 

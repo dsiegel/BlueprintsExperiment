@@ -65,4 +65,8 @@ public abstract class AbstractPersistedTitanikElement implements TitanikElement 
     public TitanikTransactionalGraph getGraph() {
         return graph;
     }
+
+    protected Element getPersistedElement() {
+        return persistedElement;
+    }
 }
